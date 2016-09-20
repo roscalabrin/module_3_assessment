@@ -6,13 +6,14 @@ class SearchController < ApplicationController
      faraday.params['apiKey'] = ENV['BEST_BUY_KEY']
    end
    
+   zip_code = params[:zip_code]
    response = conn.get do |req|
-     req.url "/stores(area#{params[:zip_code]},25)"
+     req.url "/v1/stores(area(#{zip_code},25))"
      req.params['format'] = "json"
      req.params['show'] = "longName,city,distance,phone,storeType"
      req.params['pageSize'] = "15"
+    #  req.params['apiKey'] = ENV['BEST_BUY_KEY']
    end
    JSON.parse(response.body)
-      # https://api.bestbuy.com/v1/stores(area(80202, 25))?format=json&show=longName,city,distance,phone,storeType&apiKey=gpgqqrmzw86vcagmwmrn2b64&pageSize=15
   end
 end
