@@ -15,9 +15,11 @@ class BestBuyService
       req.params['show'] = "longName,city,distance,phone,storeType"
       req.params['pageSize'] = "15"
     end
+    
     stores = JSON.parse(response.body, symbolize_names: true)[:stores]
       stores.map do |store|
         Store.new(store)
       end
+      # return stores, JSON.parse(response.body, symbolize_names: true)[:total]
    end
 end
