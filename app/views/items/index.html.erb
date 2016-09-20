@@ -1,4 +1,9 @@
 <div class="container">
+  <%= form_tag("/search", method: "get") do %>
+    <%= label_tag(:zip_code, "Search Stores by ZIP Code:") %>
+    <%= text_field_tag(:zip_code) %>
+    <%= submit_tag("search") %>
+  <% end %>
   <div class="row">
     <div class="col-sm-12">
       <h1><%= @items.count %> Items</h1>
