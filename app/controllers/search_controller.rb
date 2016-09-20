@@ -1,4 +1,4 @@
-class SearchController
+class SearchController < ApplicationController
 
   def index
    conn = Faraday.new("https://api.bestbuy.com/v1") do |faraday|
@@ -7,8 +7,12 @@ class SearchController
    end
    
    response = conn.get do |req|
-     req.url '/stores(postalCode=80922)?format=json&show=storeId,storeType,name,city,region&apiKey=gpgqqrmzw86vcagmwmrn2b64'
+     req.url "/stores(area#{params[:zip_code]},25)"
+     req.params['format'] = "json"
+     req.params['show'] = "longName,city,distance,phone,storeType"
+     req.params['pageSize'] = "15"
    end
-  #  https://api.bestbuy.com/v1/stores(postalCode=80922)?format=json&show=storeId,storeType,name,city,region&apiKey=gpgqqrmzw86vcagmwmrn2b64
+   JSON.parse(response.body)
+      # https://api.bestbuy.com/v1/stores(area(80202, 25))?format=json&show=longName,city,distance,phone,storeType&apiKey=gpgqqrmzw86vcagmwmrn2b64&pageSize=15
   end
 end
