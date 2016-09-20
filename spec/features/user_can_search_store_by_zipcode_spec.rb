@@ -11,13 +11,11 @@ feature "User can search by zipcode" do
       expect(current_path).to eq('/search')
       expect(page).to have_content "17 Total Stores"
       expect(page).to have_selector(".search-results", count: 15)
-      within(".search-results:first") do
-        expect(page).to have_content "Best Buy Mobile - Cherry Creek Shopping Center"
-        expect(page).to have_content "Denver"
-        expect(page).to have_content 3.25
-        expect(page).to have_content "303-270-9189"
-        expect(page).to have_content store type "Mobile"
-      end
+      expect(page).to have_content "Best Buy Mobile - Cherry Creek Shopping Center"
+      expect(page).to have_content "Denver"
+      expect(page).to have_content 3.25
+      expect(page).to have_content "303-270-9189"
+      expect(page).to have_content "Mobile"
     end
   end
 end
