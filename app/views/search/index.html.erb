@@ -1,6 +1,14 @@
 <h1>Search Results</h1>
 <h2>17 Total Stores</h2>
 
-<div class="search-results">
-  <%= @results %>
-</div>
+<!-- <div class="search-results"> -->
+  <% @results.each do |store| %>
+  <div class="search-results">
+    <strong><%= store.name %></strong></br>
+    <strong>Distance:</strong> <%= store.distance %></br>
+    <strong>Phone:</strong> <%= store.phone %></br>
+    <strong>Store Type:</strong> <%= store.type %></br>
+  </div>
+  </br>
+  <% end %>
+<!-- </div> -->
