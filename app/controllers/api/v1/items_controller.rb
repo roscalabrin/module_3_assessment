@@ -21,7 +21,8 @@ class Api::V1::ItemsController < ApplicationController
   def destroy
     item = Item.find(params[:id])
     if item.destroy
-      espond_with item, status: :no_content
+      item = {}
+      respond_with item, status: :no_content
     end
   end
   
